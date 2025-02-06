@@ -1,0 +1,13 @@
+.file{
+    padding-left: 2rem;
+}
+
+.folder{
+    padding-left: 2rem;
+}
+
+.folderName{
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}

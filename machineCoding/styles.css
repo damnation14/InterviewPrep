@@ -1,0 +1,27 @@
+.itemsListContainer {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  flex-basis: 21%;
+  padding: 2%;
+}
+
+.itemImg {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .item {
+    flex-basis: 28%;
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    flex-basis: 96%;
+  }
+}

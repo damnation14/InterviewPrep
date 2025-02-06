@@ -1,0 +1,73 @@
+.block {
+  width: 50px;
+  height: 50px;
+  border: solid 5px black;
+  padding: 5px;
+  display: inline-block;
+}
+
+.middle {
+  background-color: #8a2be2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.container {
+  position: relative;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: blue;
+  width: 500px;
+}
+
+.flexBlock {
+  width: 50px;
+  height: 50px;
+  border: solid 5px black;
+  padding: 5px;
+}
+.flexBlock:nth-of-type(1) {
+  flex-grow: 1;
+}
+
+/* Navbar css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin {
+  margin: 0;
+  padding: 0;
+  max-width: 50%;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin li {
+  display: inline;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .signin {
+    flex-direction: column;
+  }
+}
+
+/* Counter */
+.headerColor {
+  color: green;
+}
+
+.sample2 {
+  width: 50%;
+}

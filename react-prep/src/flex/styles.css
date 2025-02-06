@@ -1,0 +1,27 @@
+.dogContainer {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.dogImage {
+  max-width: 100%;
+}
+
+.dogCard {
+  padding: 2%;
+  flex-basis: 16%;
+}
+
+@media (max-width: 950px) {
+  .dogCard {
+    flex-basis: 28%;
+  }
+}
+
+@media (max-width: 600px) {
+  .dogCard {
+    flex-basis: 46%;
+  }
+}

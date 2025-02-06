@@ -1,0 +1,15 @@
+.note{
+    position:absolute;
+    border:1 solid black;
+    background-color: yellow;
+    height: 150px;
+    width: 150px;
+
+}
+
+.notesBoard{
+    position:relative;
+    width: 600px;
+    height: 600px;
+
+}

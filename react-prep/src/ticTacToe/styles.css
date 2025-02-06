@@ -1,0 +1,15 @@
+.ticTacToeContainer {
+  margin-top: 2rem;
+  display: flex;
+  width: 50%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.ticTacToeTile {
+  border: 1px solid black;
+  min-height: 100px;
+  flex-basis: 33%;
+  text-align: center;
+  font-size: 3em;
+}
