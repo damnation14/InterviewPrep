@@ -1,0 +1,22 @@
+.tags{
+    display: flex;
+    margin-top: 4px;
+    gap: 4px;
+    width: 350px;
+    flex-wrap: wrap;
+}
+
+.tag{
+    display: flex;
+    padding: 4px;
+    background-color: grey;
+    border-radius: 20%;
+}
+
+.deleteTag{
+    margin-left: 8px;
+}
+
+.deleteTag:hover{
+    cursor: pointer;
+}

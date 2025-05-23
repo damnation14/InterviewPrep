@@ -1,0 +1,43 @@
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+  }
+
+
+.rightNav{
+    display: flex;
+   gap:1rem;
+
+}
+
+.rightNav li {
+  display: inline;
+  border: solid 1px black;
+}
+
+.leftNav li {
+  display: inline;
+}
+
+
+.foodContainer{
+  display: flex;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.foodItem{
+  display: flex;
+  flex-basis: 16%;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 2%;
+
+}
+
+.foodItem img {
+  max-width: 100%;
+}

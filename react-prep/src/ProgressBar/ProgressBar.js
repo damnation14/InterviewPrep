@@ -1,33 +1,66 @@
-import React, { useState, useEffect, useCallback } from "react";
-import "./styles.css";
+import React, { useState, useEffect, useRef } from "react";
 
 const ProgressBar = () => {
-  const [percent, setPercent] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef(null);
 
+  // Start progress logic
   useEffect(() => {
-    const interval = setTimeout(() => {
-      if (percent < 100) {
-        setPercent((prevProgress) => prevProgress + 10);
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [percent]);
+    if (!isPaused && progress < 100) {
+      intervalRef.current = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(intervalRef.current);
+            return 100;
+          }
+          return prev + 10;
+        });
+      }, 1000); // speed: update every 100ms
+    }
 
-  const style = { width: `${percent}%` };
+    // Clean up interval
+  }, [isPaused]);
+
+  const handlePause = () => {
+    setIsPaused(true);
+    clearInterval(intervalRef.current);
+  };
+
+  const handleResume = () => {
+    setIsPaused(false);
+  };
 
   return (
-    <>
-      <h1>Progress bar </h1>
-      <div className="progressBarContainer">
-        <div className="progressBar" style={style}>
-          {percent}
-        </div>
+    <div style={{ padding: "20px", maxWidth: "400px" }}>
+      <div
+        style={{
+          height: "30px",
+          width: "100%",
+          backgroundColor: "#eee",
+          borderRadius: "10px",
+          overflow: "hidden",
+          marginBottom: "10px",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${progress}%`,
+            backgroundColor: "#4caf50",
+            transition: "width 0.1s ease-in-out",
+          }}
+        />
       </div>
-    </>
+      <div>
+        <button onClick={handlePause} disabled={isPaused}>
+          Pause
+        </button>
+        <button onClick={handleResume} disabled={!isPaused}>
+          Resume
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -1,0 +1,41 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    font-family: sans-serif;
+  }
+  
+  .topRow {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .apiUrlInput {
+    flex: 1;
+    padding: 6px;
+  }
+  
+  .sendButton {
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .bottomRow {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .textareaStyle {
+    min-height: 120px;
+    resize: vertical;
+    padding: 6px;
+  }
+  

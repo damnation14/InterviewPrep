@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .notes-board {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-color: #f9f9f9;
+      overflow: hidden;
+    }
+    .note {
+      position: absolute;
+      width: 200px;
+      height: 150px;
+      background-color: #fffa65;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      cursor: move;
+      resize: both;
+      overflow: auto;
+    }
+    .note textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      resize: none;
+    }
+    .controls {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <input type="text" id="noteText" placeholder="Write a new note" />
+    <button id="addNote">Add Note</button>
+  </div>
+  <div class="notes-board" id="notesBoard"></div>
+
+  <script>
+    const notesBoard = document.getElementById('notesBoard');
+    const addNoteButton = document.getElementById('addNote');
+    const noteTextInput = document.getElementById('noteText');
+
+    let noteIdCounter = 0;
+
+    // Function to create a new sticky note
+    const createNote = (text, x = 50, y = 50) => {
+      const note = document.createElement('div');
+      note.className = 'note';
+      note.style.top = `${y}px`;
+      note.style.left = `${x}px`;
+      note.setAttribute('data-id', noteIdCounter++);
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      note.appendChild(textarea);
+
+      // Add drag functionality
+      note.addEventListener('mousedown', (e) => handleDragStart(e, note));
+
+      notesBoard.appendChild(note);
+    };
+
+    // Function to handle dragging
+    const handleDragStart = (e, note) => {
+      const offsetX = e.clientX - note.getBoundingClientRect().left;
+      const offsetY = e.clientY - note.getBoundingClientRect().top;
+
+      const handleMouseMove = (e) => {
+        const newX = e.clientX - offsetX;
+        const newY = e.clientY - offsetY;
+        note.style.left = `${newX}px`;
+        note.style.top = `${newY}px`;
+      };
+
+      const handleMouseUp = () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    };
+
+    // Add a new note when the button is clicked
+    addNoteButton.addEventListener('click', () => {
+      const text = noteTextInput.value.trim();
+      if (text) {
+        createNote(text);
+        noteTextInput.value = ''; // Clear the input field
+      }
+    });
+  </script>
+</body>
+</html>

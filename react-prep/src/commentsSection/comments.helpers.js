@@ -17,6 +17,27 @@ export const increaseLikes = (comments, id) => {
   return updatedComments;
 };
 
+export const iincreaseLikes = (comments, id) => {
+  const increaseLikeForComment = (comments) => {
+    return comments.map((comment) => {
+      if (comment.id === id) {
+        return {
+          ...comment,
+          likes: comment.likes + 1,
+        };
+      } else if (comment.replies) {
+        return {
+          ...comment,
+          replies: increaseLikeForComment(comment.replies),
+        };
+      }
+      return comment;
+    });
+  };
+  const updatedComments = increaseLikeForComment(comments);
+  return updatedComments;
+};
+
 export const addReply = (comments, id, replyText) => {
   const addReplyToComment = (newReply) => (comment) => {
     if (comment.id === id) {
@@ -45,3 +66,19 @@ export const makeNewComment = (commentText) => ({
   replies: [],
   likes: 0,
 });
+
+export const handleDeleteComments = (comments, id) => {
+  const deleteComment = (comments) => {
+    return comments
+      .filter((comment) => comment.id !== id)
+      .map((comment) => {
+        if (comment.replies) {
+          return { ...comment, replies: deleteComment(comment.replies) };
+        }
+        return comment;
+      });
+  };
+
+  const updatedComments = deleteComment(comments, id);
+  return updatedComments;
+};

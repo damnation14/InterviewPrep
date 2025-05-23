@@ -1,0 +1,15 @@
+.outer{
+    height: 500px;
+    width: 500px;
+    position: relative;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.inner{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    position: absolute;
+    top: 5px;
+}

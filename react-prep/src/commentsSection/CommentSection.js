@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import Comment from "./Comment";
 import { commentsData } from "./commentsData";
 
-import { increaseLikes, makeNewComment, addReply } from "./comments.helpers";
+import {
+  increaseLikes,
+  makeNewComment,
+  addReply,
+  handleDeleteComments,
+} from "./comments.helpers";
 
 const CommentSection = () => {
   const [inputComment, setInputComment] = useState("");
@@ -28,6 +33,10 @@ const CommentSection = () => {
     setComments(updatedComments);
   };
 
+  const handleDeleteComment = (id) => {
+    setComments((prev) => handleDeleteComments(prev, id));
+  };
+
   return (
     <div>
       <div>
@@ -39,6 +48,7 @@ const CommentSection = () => {
           comment={comment}
           setIncreaseLikes={setIncreaseLikes}
           handleAddReply={handleAddReply}
+          handleDeleteComment={handleDeleteComment}
         />
       ))}
     </div>

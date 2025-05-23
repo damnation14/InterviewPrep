@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 const makeUserNames = (user) => <div key={user.id}>{user.name}</div>; // Added key for list rendering
 
@@ -27,10 +27,10 @@ const FetchApi = () => {
       });
   }, []);
 
-  // Create debounced function outside of the effect so it's not re-created on each render
-  const debouncedFetchUsers = useCallback(debounce(fetchUsers, 3000), [
-    fetchUsers,
-  ]);
+  const debouncedFetchUsers = useMemo(
+    () => debounce(fetchUsers, 3000),
+    [fetchUsers]
+  );
 
   useEffect(() => {
     if (searchQuery) {

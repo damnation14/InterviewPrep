@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./style.css";
 import { makeNewComment } from "./comments.helpers";
 
-const Comment = ({ comment, setIncreaseLikes, handleAddReply }) => {
+const Comment = ({
+  comment,
+  setIncreaseLikes,
+  handleAddReply,
+  handleDeleteComment,
+}) => {
   const [expand, setExpand] = useState(false);
   const [inputReply, setInputReply] = useState("");
   const expandReplies = () => setExpand((prev) => !prev);
@@ -22,7 +27,8 @@ const Comment = ({ comment, setIncreaseLikes, handleAddReply }) => {
     <div className="commentsList">
       <div>💬{comment.text}</div>
       <div>-{comment.author}</div>
-      <div onClick={setIncreaseLikes(comment.id)}>{comment.likes} Likes</div>
+      <button onClick={() => handleDeleteComment(comment.id)}>delete</button>
+      <div onClick={setIncreaseLikes(comment.id)}>{comment.likes} ❤️</div>
       <div onClick={expandReplies}>Replies</div>
       {expand ? (
         <div>
@@ -36,6 +42,7 @@ const Comment = ({ comment, setIncreaseLikes, handleAddReply }) => {
               comment={comment}
               setIncreaseLikes={setIncreaseLikes}
               handleAddReply={handleAddReply}
+              handleDeleteComment={handleDeleteComment}
             />
           ))
         : null}

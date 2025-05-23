@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  header,
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+  
+  .sidebar {
+    background-color: #ddd;
+    padding: 1rem;
+    width: 200px;
+    flex-shrink: 0;
+  }
+  
+  main {
+    flex: 1;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+  }
+  
